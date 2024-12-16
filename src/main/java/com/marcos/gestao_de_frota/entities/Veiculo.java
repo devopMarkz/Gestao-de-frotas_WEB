@@ -3,7 +3,10 @@ package com.marcos.gestao_de_frota.entities;
 import com.marcos.gestao_de_frota.entities.enums.CategoriaVeiculo;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_veiculos")
@@ -38,32 +41,64 @@ public abstract class Veiculo {
         this.categoriaVeiculo = categoriaVeiculo;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Boolean getDisponivel() {
+        return disponivel;
     }
 
     public void setDisponivel(Boolean disponivel) {
         this.disponivel = disponivel;
     }
 
+    public String getMarca() {
+        return marca;
+    }
+
     public void setMarca(String marca) {
         this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
     }
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
 
+    public Integer getAnoFabricacao() {
+        return anoFabricacao;
+    }
+
     public void setAnoFabricacao(Integer anoFabricacao) {
         this.anoFabricacao = anoFabricacao;
+    }
+
+    public Double getCapacidade() {
+        return capacidade;
     }
 
     public void setCapacidade(Double capacidade) {
         this.capacidade = capacidade;
     }
 
+    public Double getCustoPorDia() {
+        return custoPorDia;
+    }
+
     public void setCustoPorDia(Double custoPorDia) {
         this.custoPorDia = custoPorDia;
+    }
+
+    public CategoriaVeiculo getCategoriaVeiculo() {
+        return categoriaVeiculo;
     }
 
     public void setCategoriaVeiculo(CategoriaVeiculo categoriaVeiculo) {
