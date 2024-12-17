@@ -19,7 +19,7 @@ public class CreateMotoristaDto {
     @Pattern(regexp = "^[A-E]$", message = "A categoria deve ser uma letra maiúscula de A a E")
     private String categoriaCNH;
 
-    @Past
+    @Past(message = "A data de nascimento deve ser retroativa.")
     private LocalDate dataNascimento;
 
     public CreateMotoristaDto(String nome, String cnh, String categoriaCNH, LocalDate dataNascimento) {

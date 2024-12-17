@@ -1,6 +1,8 @@
 package com.marcos.gestao_de_frota.dto;
 
-import com.marcos.gestao_de_frota.entities.enums.CategoriaCNH;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
@@ -9,11 +11,17 @@ public class MotoristaDto {
     private Long id;
     private String nome;
     private Boolean disponivel;
+
+    @Size(min = 9, max = 9, message = "A CNH deve conter 9 dígitos")
     private String cnh;
-    private CategoriaCNH categoriaCNH;
+
+    @Pattern(regexp = "^[A-E]$", message = "A categoria deve ser uma letra maiúscula de A a E")
+    private String categoriaCNH;
+
+    @Past(message = "A data de nascimento deve ser retroativa.")
     private LocalDate dataNascimento;
 
-    public MotoristaDto(Long id, String nome, Boolean disponivel, String cnh, CategoriaCNH categoriaCNH, LocalDate dataNascimento) {
+    public MotoristaDto(Long id, String nome, Boolean disponivel, String cnh, String categoriaCNH, LocalDate dataNascimento) {
         this.id = id;
         this.nome = nome;
         this.disponivel = disponivel;
@@ -38,7 +46,7 @@ public class MotoristaDto {
         return cnh;
     }
 
-    public CategoriaCNH getCategoriaCNH() {
+    public String getCategoriaCNH() {
         return categoriaCNH;
     }
 

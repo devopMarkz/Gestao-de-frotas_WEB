@@ -46,6 +46,10 @@ public class Motorista {
         return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }

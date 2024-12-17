@@ -57,5 +57,9 @@ public class MotoristaController {
         return ResponseEntity.ok(motoristaService.getById(id));
     }
 
+    @PutMapping
+    public ResponseEntity<MotoristaDto> updateMotorista(@Valid @RequestBody MotoristaDto motoristaDto){
+        return ResponseEntity.ok(motoristaService.updateMotorista(motoristaDto));
+    }
 
 }
