@@ -17,7 +17,7 @@ public class MotoristaService {
     private MotoristaRepository motoristaRepository;
 
     @Transactional
-    public MotoristaDto createMotorista(CreateMotoristaDto createMotoristaDto){
+    public MotoristaDto insert(CreateMotoristaDto createMotoristaDto){
         Motorista motorista = ConvertDtoToEntity.convertToEntity(createMotoristaDto);
         motorista = motoristaRepository.save(motorista);
         return ConvertEntityToDto.convertToMotoristaDto(motorista);
