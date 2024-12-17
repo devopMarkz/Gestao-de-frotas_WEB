@@ -2,6 +2,7 @@ package com.marcos.gestao_de_frota.controllers;
 
 import com.marcos.gestao_de_frota.dto.CreateMotoristaDto;
 import com.marcos.gestao_de_frota.dto.MotoristaDto;
+import com.marcos.gestao_de_frota.dto.UpdateMotoristaDto;
 import com.marcos.gestao_de_frota.services.MotoristaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,7 @@ public class MotoristaController {
     }
 
     @PutMapping
-    public ResponseEntity<MotoristaDto> updateMotorista(@Valid @RequestBody MotoristaDto motoristaDto){
+    public ResponseEntity<MotoristaDto> updateMotorista(@Valid @RequestBody UpdateMotoristaDto motoristaDto){
         return ResponseEntity.ok(motoristaService.updateMotorista(motoristaDto));
     }
 

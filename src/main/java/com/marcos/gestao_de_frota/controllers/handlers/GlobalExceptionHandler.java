@@ -7,6 +7,7 @@ import com.marcos.gestao_de_frota.services.exceptions.MotoristaInexistenteExcept
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -37,4 +38,10 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(status.value()).body(errorMessageDto);
     }
 
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ErrorMessageDto> httpMessageNotReadable(HttpMessageNotReadableException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        ErrorMessageDto errorMessageDto = new ErrorMessageDto(Instant.now(), status.value(), "Corpo da requisição inválido.", request.getRequestURI());
+        return ResponseEntity.status(status.value()).body(errorMessageDto);
+    }
 }

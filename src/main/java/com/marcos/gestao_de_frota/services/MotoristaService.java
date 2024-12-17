@@ -2,6 +2,7 @@ package com.marcos.gestao_de_frota.services;
 
 import com.marcos.gestao_de_frota.dto.CreateMotoristaDto;
 import com.marcos.gestao_de_frota.dto.MotoristaDto;
+import com.marcos.gestao_de_frota.dto.UpdateMotoristaDto;
 import com.marcos.gestao_de_frota.entities.Motorista;
 import com.marcos.gestao_de_frota.entities.enums.CategoriaCNH;
 import com.marcos.gestao_de_frota.repositories.MotoristaRepository;
@@ -43,7 +44,7 @@ public class MotoristaService {
     }
 
     @Transactional
-    public MotoristaDto updateMotorista(MotoristaDto motoristaDto){
+    public MotoristaDto updateMotorista(UpdateMotoristaDto motoristaDto){
         Motorista motorista = motoristaRepository.findById(motoristaDto.getId())
                 .orElseThrow(() -> new MotoristaInexistenteException("O motorista de id " + motoristaDto.getId() + " não existe no sistema."));
         Motorista motoristaAtualizado = attMotorista(motorista, motoristaDto);
@@ -57,7 +58,7 @@ public class MotoristaService {
      * @param motoristaDto O DTO recebido do usuário com os dados já atualizados
      * @return A entidade Motorista com os dados atualizados
      */
-    private Motorista attMotorista(Motorista motorista, MotoristaDto motoristaDto){
+    private Motorista attMotorista(Motorista motorista, UpdateMotoristaDto motoristaDto){
         if(motoristaDto == null) return motorista;
         Optional.ofNullable(motoristaDto.getNome()).ifPresent(motorista::setNome);
         Optional.ofNullable(motoristaDto.getCnh()).ifPresent(motorista::setCnh);
