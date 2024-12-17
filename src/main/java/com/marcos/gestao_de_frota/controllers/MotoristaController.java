@@ -47,5 +47,15 @@ public class MotoristaController {
         return ResponseEntity.ok(motoristaService.getAll(pageable));
     }
 
+    /**
+     * Metodo responsavel por buscar um motorista por id
+     * @param id Referente ao id do motorista que o usuário deseja buscar
+     * @return MotoristaDTO
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<MotoristaDto> findById(@PathVariable Long id){
+        return ResponseEntity.ok(motoristaService.getById(id));
+    }
+
 
 }

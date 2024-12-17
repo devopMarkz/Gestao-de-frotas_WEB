@@ -4,6 +4,7 @@ import com.marcos.gestao_de_frota.dto.CreateMotoristaDto;
 import com.marcos.gestao_de_frota.dto.MotoristaDto;
 import com.marcos.gestao_de_frota.entities.Motorista;
 import com.marcos.gestao_de_frota.repositories.MotoristaRepository;
+import com.marcos.gestao_de_frota.services.exceptions.MotoristaInexistenteException;
 import com.marcos.gestao_de_frota.utils.ConvertDtoToEntity;
 import com.marcos.gestao_de_frota.utils.ConvertEntityToDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,13 @@ public class MotoristaService {
     public Page<MotoristaDto> getAll(Pageable pageable){
         Page<Motorista> motoristas = motoristaRepository.findAll(pageable);
         return motoristas.map(ConvertEntityToDto::convertToMotoristaDto);
+    }
+
+    @Transactional(readOnly = true)
+    public MotoristaDto getById(Long id){
+        Motorista motorista = motoristaRepository.findById(id)
+                .orElseThrow(() -> new MotoristaInexistenteException("O motorista de id " + id + " não existe no sistema."));
+        return ConvertEntityToDto.convertToMotoristaDto(motorista);
     }
 
 }
