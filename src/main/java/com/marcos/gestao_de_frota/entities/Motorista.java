@@ -4,8 +4,6 @@ import com.marcos.gestao_de_frota.entities.enums.CategoriaCNH;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +15,8 @@ public class Motorista {
     private Long id;
 
     private Boolean disponivel;
+
+    @Column(unique = true)
     private String cnh;
 
     @Enumerated(EnumType.STRING)
