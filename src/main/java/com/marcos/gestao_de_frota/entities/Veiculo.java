@@ -27,6 +27,9 @@ public abstract class Veiculo {
     @Enumerated(EnumType.STRING)
     private CategoriaVeiculo categoriaVeiculo;
 
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
+    private List<Viagem> viagens;
+
     public Veiculo() {
     }
 
@@ -103,6 +106,10 @@ public abstract class Veiculo {
 
     public void setCategoriaVeiculo(CategoriaVeiculo categoriaVeiculo) {
         this.categoriaVeiculo = categoriaVeiculo;
+    }
+
+    public List<Viagem> getViagens() {
+        return viagens;
     }
 
     @Override
