@@ -1,8 +1,6 @@
 package com.marcos.gestao_de_frota.dto;
 
-import com.marcos.gestao_de_frota.entities.enums.CategoriaCNH;
 import jakarta.validation.constraints.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
