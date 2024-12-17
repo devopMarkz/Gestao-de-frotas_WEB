@@ -1,8 +1,8 @@
 package com.marcos.gestao_de_frota.services;
 
-import com.marcos.gestao_de_frota.dto.CreateMotoristaDto;
-import com.marcos.gestao_de_frota.dto.MotoristaDto;
-import com.marcos.gestao_de_frota.dto.UpdateMotoristaDto;
+import com.marcos.gestao_de_frota.dto.motorista.CreateMotoristaDto;
+import com.marcos.gestao_de_frota.dto.motorista.MotoristaDto;
+import com.marcos.gestao_de_frota.dto.motorista.UpdateMotoristaDto;
 import com.marcos.gestao_de_frota.entities.Motorista;
 import com.marcos.gestao_de_frota.entities.enums.CategoriaCNH;
 import com.marcos.gestao_de_frota.repositories.MotoristaRepository;

@@ -1,4 +1,4 @@
-package com.marcos.gestao_de_frota.dto;
+package com.marcos.gestao_de_frota.dto.motorista;
 
 import jakarta.validation.constraints.*;
 

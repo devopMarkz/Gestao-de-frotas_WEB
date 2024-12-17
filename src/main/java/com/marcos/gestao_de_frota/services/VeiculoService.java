@@ -11,7 +11,7 @@ public class VeiculoService {
     @Autowired
     private VeiculoRepository veiculoRepository;
 
-    //@Transactional
+
 
 
 }

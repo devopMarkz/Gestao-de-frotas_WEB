@@ -1,4 +1,4 @@
-package com.marcos.gestao_de_frota.dto;
+package com.marcos.gestao_de_frota.dto.veiculo;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
