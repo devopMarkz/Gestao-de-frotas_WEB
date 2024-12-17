@@ -49,5 +49,59 @@ public class Viagem {
         this.statusViagem = statusViagem;
     }
 
+    public VeiculoMotoristaPK getId() {
+        return id;
+    }
 
+    public void setId(VeiculoMotoristaPK id) {
+        this.id = id;
+    }
+
+    public Motorista getMotorista() {
+        return motorista;
+    }
+
+    public void setMotorista(Motorista motorista) {
+        this.motorista = motorista;
+    }
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public void setVeiculo(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
+
+    public LocalDateTime getDataHoraInicio() {
+        return dataHoraInicio;
+    }
+
+    public void setDataHoraInicio(LocalDateTime dataHoraInicio) {
+        this.dataHoraInicio = dataHoraInicio;
+    }
+
+    public LocalDateTime getDataHoraFim() {
+        return dataHoraFim;
+    }
+
+    public void setDataHoraFim(LocalDateTime dataHoraFim) {
+        this.dataHoraFim = dataHoraFim;
+    }
+
+    public Double getKmPercorrido() {
+        return kmPercorrido;
+    }
+
+    public void setKmPercorrido(Double kmPercorrido) {
+        this.kmPercorrido = kmPercorrido;
+    }
+
+    public StatusViagem getStatusViagem() {
+        return statusViagem;
+    }
+
+    public void setStatusViagem(StatusViagem statusViagem) {
+        this.statusViagem = statusViagem;
+    }
 }

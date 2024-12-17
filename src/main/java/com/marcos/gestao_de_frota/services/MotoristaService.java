@@ -7,6 +7,8 @@ import com.marcos.gestao_de_frota.repositories.MotoristaRepository;
 import com.marcos.gestao_de_frota.utils.ConvertDtoToEntity;
 import com.marcos.gestao_de_frota.utils.ConvertEntityToDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +23,12 @@ public class MotoristaService {
         Motorista motorista = ConvertDtoToEntity.convertToEntity(createMotoristaDto);
         motorista = motoristaRepository.save(motorista);
         return ConvertEntityToDto.convertToMotoristaDto(motorista);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<MotoristaDto> getAll(Pageable pageable){
+        Page<Motorista> motoristas = motoristaRepository.findAll(pageable);
+        return motoristas.map(ConvertEntityToDto::convertToMotoristaDto);
     }
 
 }
