@@ -1,22 +1,24 @@
 package com.marcos.gestao_de_frota.dto;
 
 import com.marcos.gestao_de_frota.entities.enums.CategoriaCNH;
-import jakarta.validation.constraints.Past;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
 public class CreateMotoristaDto {
 
+    @NotBlank(message = "O campo nome não pode estar nulo ou vazio.")
     private String nome;
+
     private Boolean disponivel = true;
 
-    @Size(min = 9, max = 9, message = "A CNH deve conter 9 dígitos")
+    @Size(min = 9, max = 9, message = "A CNH deve conter 9 dígitos.")
+    @NotBlank(message = "O campo cnh não pode estar nulo ou vazio.")
     private String cnh;
 
-    @Pattern(regexp = "^[A-E]$", message = "A categoria deve ser uma letra maiúscula de A a E")
+    @Pattern(regexp = "^[A-E]$", message = "A categoria deve ser uma letra maiúscula de A a E.")
+    @NotBlank(message = "O campo categoriaCNH não pode estar nulo ou vazio.")
     private String categoriaCNH;
 
     @Past(message = "A data de nascimento deve ser retroativa.")
