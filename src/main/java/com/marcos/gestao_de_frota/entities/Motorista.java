@@ -14,6 +14,8 @@ public class Motorista {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String nome;
+
     private Boolean disponivel;
 
     @Column(unique = true)
@@ -27,8 +29,9 @@ public class Motorista {
     public Motorista() {
     }
 
-    public Motorista(Long id, Boolean disponivel, String cnh, CategoriaCNH categoriaCNH, LocalDate dataNascimento) {
+    public Motorista(Long id, String nome, Boolean disponivel, String cnh, CategoriaCNH categoriaCNH, LocalDate dataNascimento) {
         this.id = id;
+        this.nome = nome;
         this.disponivel = disponivel;
         this.cnh = cnh;
         this.categoriaCNH = categoriaCNH;
@@ -37,6 +40,10 @@ public class Motorista {
 
     public Long getId() {
         return id;
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public void setId(Long id) {

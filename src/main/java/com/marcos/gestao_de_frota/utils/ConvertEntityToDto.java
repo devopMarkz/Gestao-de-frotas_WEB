@@ -9,7 +9,7 @@ public class ConvertEntityToDto {
 
     public static MotoristaDto convertToMotoristaDto(Motorista motorista){
         if(motorista == null) return null;
-        return new MotoristaDto(motorista.getId(), motorista.getDisponivel(), motorista.getCnh(), motorista.getCategoriaCNH(), motorista.getDataNascimento());
+        return new MotoristaDto(motorista.getId(), motorista.getNome(), motorista.getDisponivel(), motorista.getCnh(), motorista.getCategoriaCNH(), motorista.getDataNascimento());
     }
 
 }

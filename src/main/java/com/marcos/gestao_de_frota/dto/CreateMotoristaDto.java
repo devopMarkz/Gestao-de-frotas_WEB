@@ -10,6 +10,7 @@ import java.time.LocalDate;
 
 public class CreateMotoristaDto {
 
+    private String nome;
     private Boolean disponivel = true;
 
     @Size(min = 9, max = 9, message = "A CNH deve conter 9 dígitos")
@@ -21,10 +22,15 @@ public class CreateMotoristaDto {
     @Past
     private LocalDate dataNascimento;
 
-    public CreateMotoristaDto(String cnh, String categoriaCNH, LocalDate dataNascimento) {
+    public CreateMotoristaDto(String nome, String cnh, String categoriaCNH, LocalDate dataNascimento) {
+        this.nome = nome;
         this.cnh = cnh;
         this.categoriaCNH = categoriaCNH;
         this.dataNascimento = dataNascimento;
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public Boolean getDisponivel() {

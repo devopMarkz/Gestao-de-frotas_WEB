@@ -8,7 +8,7 @@ public class ConvertDtoToEntity {
 
     public static Motorista convertToEntity(CreateMotoristaDto dto){
         if(dto == null) return null;
-        return new Motorista(null, dto.getDisponivel(), dto.getCnh(), CategoriaCNH.valueOf(dto.getCategoriaCNH()), dto.getDataNascimento());
+        return new Motorista(null, dto.getNome(), dto.getDisponivel(), dto.getCnh(), CategoriaCNH.valueOf(dto.getCategoriaCNH()), dto.getDataNascimento());
     }
 
 }
