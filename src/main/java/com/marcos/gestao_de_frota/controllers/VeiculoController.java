@@ -3,6 +3,7 @@ package com.marcos.gestao_de_frota.controllers;
 import com.marcos.gestao_de_frota.dto.veiculo.CreateVeiculoDto;
 import com.marcos.gestao_de_frota.dto.veiculo.VeiculoDto;
 import com.marcos.gestao_de_frota.services.VeiculoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,7 @@ public class VeiculoController {
     private VeiculoService veiculoService;
 
     @PostMapping
-    public ResponseEntity<VeiculoDto> createVeiculo(@RequestBody CreateVeiculoDto createVeiculoDto){
+    public ResponseEntity<VeiculoDto> createVeiculo(@Valid @RequestBody CreateVeiculoDto createVeiculoDto){
         VeiculoDto veiculoDto = veiculoService.insert(createVeiculoDto);
         return ResponseEntity.ok(veiculoDto);
     }

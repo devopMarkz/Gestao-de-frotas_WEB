@@ -20,7 +20,9 @@ public class CaminhaoFactory implements VeiculoFactory{
         caminhao.setCapacidade(createVeiculoDto.getCapacidade());
         caminhao.setCustoPorDia(createVeiculoDto.getCustoPorDia());
         caminhao.setCategoriaVeiculo(CategoriaVeiculo.valueOf(createVeiculoDto.getCategoriaVeiculo().toUpperCase()));
-        Integer numeroDeEixos = (createVeiculoDto.getAtributosEspecificos().containsKey("numeroDeEixos"))? (Integer) createVeiculoDto.getAtributosEspecificos().get("numeroDeEixos") : null;
+        Integer numeroDeEixos =
+                (createVeiculoDto.getAtributosEspecificos().containsKey("numeroDeEixos"))?
+                        (Integer) createVeiculoDto.getAtributosEspecificos().get("numeroDeEixos") : null;
         caminhao.setNumeroDeEixos(numeroDeEixos);
         return caminhao;
     }
