@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/veiculos")
@@ -21,7 +24,11 @@ public class VeiculoController {
     @PostMapping
     public ResponseEntity<VeiculoDto> createVeiculo(@Valid @RequestBody CreateVeiculoDto createVeiculoDto){
         VeiculoDto veiculoDto = veiculoService.insert(createVeiculoDto);
-        return ResponseEntity.ok(veiculoDto);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(veiculoDto.getId())
+                .toUri();
+        return ResponseEntity.created(location).body(veiculoDto);
     }
 
 }
