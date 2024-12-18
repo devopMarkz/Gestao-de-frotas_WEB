@@ -47,6 +47,7 @@ public class VeiculoService {
     private VeiculoDto convertToDto(Veiculo veiculo) {
         return switch (veiculo.getCategoriaVeiculo().name()) {
             case "CAMINHAO" -> ConvertEntityToDto.convertToCaminhaoDto((Caminhao) veiculo);
+            case "ONIBUS" -> ConvertEntityToDto.convertToOnibusDto((Onibus) veiculo);
             default -> throw new VeiculoInvalidoException("Tipo de veículo inválido.");
         };
     }
