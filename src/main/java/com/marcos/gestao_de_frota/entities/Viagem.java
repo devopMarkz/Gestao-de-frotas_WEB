@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tb_viagens")
+@Table(name = "tb_viagem")
 public class Viagem {
 
     @EmbeddedId

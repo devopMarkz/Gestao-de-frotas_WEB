@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-@Table(name = "tb_veiculos")
+@Table(name = "tb_veiculo")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Veiculo {
 
