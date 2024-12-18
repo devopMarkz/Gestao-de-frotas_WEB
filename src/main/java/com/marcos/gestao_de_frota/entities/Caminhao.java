@@ -10,24 +10,14 @@ import jakarta.persistence.Table;
 @PrimaryKeyJoinColumn(name = "veiculo_id")
 public class Caminhao extends Veiculo {
 
-    private Double capacidadeCarga;
     private Integer numeroDeEixos;
 
     public Caminhao() {
     }
 
-    public Caminhao(Long id, Boolean disponivel, String marca, String modelo, Integer anoFabricacao, Double capacidade, Double custoPorDia, CategoriaVeiculo categoriaVeiculo, Double capacidadeCarga, Integer numeroDeEixos) {
+    public Caminhao(Long id, Boolean disponivel, String marca, String modelo, Integer anoFabricacao, Double capacidade, Double custoPorDia, CategoriaVeiculo categoriaVeiculo, Integer numeroDeEixos) {
         super(id, disponivel, marca, modelo, anoFabricacao, capacidade, custoPorDia, categoriaVeiculo);
-        this.capacidadeCarga = capacidadeCarga;
         this.numeroDeEixos = numeroDeEixos;
-    }
-
-    public Double getCapacidadeCarga() {
-        return capacidadeCarga;
-    }
-
-    public void setCapacidadeCarga(Double capacidadeCarga) {
-        this.capacidadeCarga = capacidadeCarga;
     }
 
     public Integer getNumeroDeEixos() {

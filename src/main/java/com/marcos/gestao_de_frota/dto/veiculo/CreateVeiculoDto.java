@@ -3,7 +3,13 @@ package com.marcos.gestao_de_frota.dto.veiculo;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CreateVeiculoDto {
+
+    @NotBlank(message = "Campo não pode estar nulo ou vazio.")
+    private String categoriaVeiculo;
 
     private Boolean disponivel = true;
 
@@ -22,8 +28,7 @@ public class CreateVeiculoDto {
     @PositiveOrZero(message = "O custo por dia deve ser positivo.")
     private Double custoPorDia;
 
-    @NotBlank(message = "Campo não pode estar nulo ou vazio.")
-    private String categoriaVeiculo;
+    private Map<String, Object> atributosEspecificos = new HashMap<>();
 
     public CreateVeiculoDto(String marca, String modelo, Integer anoFabricacao, Double capacidade, Double custoPorDia, String categoriaVeiculo) {
         this.marca = marca;
@@ -60,5 +65,9 @@ public class CreateVeiculoDto {
 
     public String getCategoriaVeiculo() {
         return categoriaVeiculo;
+    }
+
+    public Map<String, Object> getAtributosEspecificos() {
+        return atributosEspecificos;
     }
 }
