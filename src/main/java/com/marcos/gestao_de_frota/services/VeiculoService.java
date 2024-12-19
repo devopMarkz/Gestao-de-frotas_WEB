@@ -10,6 +10,8 @@ import com.marcos.gestao_de_frota.repositories.VeiculoRepository;
 import com.marcos.gestao_de_frota.services.exceptions.VeiculoInvalidoException;
 import com.marcos.gestao_de_frota.utils.ConvertEntityToDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,6 +44,13 @@ public class VeiculoService {
         veiculo = veiculoRepository.save(veiculo);
 
         return convertToDto(veiculo);
+    }
+
+    public Page<VeiculoDto> getAll(String disponivel, String categoriaVeiculo, Pageable pageable) {
+        Boolean disponibilidade = Boolean.parseBoolean(disponivel);
+        categoriaVeiculo = categoriaVeiculo.toUpperCase();
+        Page<Veiculo> veiculos = (categoriaVeiculo.isEmpty()) ? veiculoRepository.findByDisponivel(disponibilidade, pageable) : veiculoRepository.searchAll(disponibilidade, categoriaVeiculo, pageable);
+        return veiculos.map(this::convertToDto);
     }
 
     private VeiculoDto convertToDto(Veiculo veiculo) {
