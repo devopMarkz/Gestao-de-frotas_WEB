@@ -14,7 +14,7 @@ public class Usuario {
     private Long id;
 
     @Column(unique = true, nullable = false)
-    private String username;
+    private String email;
 
     @Column(nullable = false)
     private String password;
@@ -29,9 +29,9 @@ public class Usuario {
     public Usuario(){
     }
 
-    public Usuario(Long id, String username, String password, TipoDeUsuario tipoDeUsuario, Motorista motorista) {
+    public Usuario(Long id, String email, String password, TipoDeUsuario tipoDeUsuario, Motorista motorista) {
         this.id = id;
-        this.username = username;
+        this.email = email;
         this.password = password;
         this.tipoDeUsuario = tipoDeUsuario;
         this.motorista = motorista;
@@ -46,11 +46,11 @@ public class Usuario {
     }
 
     public String getUsername() {
-        return username;
+        return email;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.email = username;
     }
 
     public String getPassword() {
@@ -82,11 +82,11 @@ public class Usuario {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         Usuario usuario = (Usuario) object;
-        return Objects.equals(id, usuario.id) && Objects.equals(username, usuario.username) && Objects.equals(password, usuario.password) && Objects.equals(motorista, usuario.motorista);
+        return Objects.equals(id, usuario.id) && Objects.equals(email, usuario.email) && Objects.equals(password, usuario.password) && Objects.equals(motorista, usuario.motorista);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password);
+        return Objects.hash(id, email, password);
     }
 }
