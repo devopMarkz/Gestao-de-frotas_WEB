@@ -9,11 +9,13 @@ import com.marcos.gestao_de_frota.entities.Veiculo;
 import com.marcos.gestao_de_frota.entities.enums.CategoriaCNH;
 import com.marcos.gestao_de_frota.factory.VeiculoFactory;
 import com.marcos.gestao_de_frota.repositories.VeiculoRepository;
+import com.marcos.gestao_de_frota.services.exceptions.PlacaDeVeiculoJaExistenteException;
 import com.marcos.gestao_de_frota.services.exceptions.VeiculoInexistenteException;
 import com.marcos.gestao_de_frota.services.exceptions.VeiculoInvalidoException;
 import com.marcos.gestao_de_frota.utils.ConvertDtoToEntity;
 import com.marcos.gestao_de_frota.utils.ConvertEntityToDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -35,19 +37,23 @@ public class VeiculoService {
 
     @Transactional
     public VeiculoDto insert(CreateVeiculoDto createVeiculoDto) {
-        // Recupera a fábrica com base na categoria do veículo
-        String tipo = createVeiculoDto.getCategoriaVeiculo().toLowerCase() + "Factory";
-        VeiculoFactory factory = factories.get(tipo);
+        try {
+            // Recupera a fábrica com base na categoria do veículo
+            String tipo = createVeiculoDto.getCategoriaVeiculo().toLowerCase() + "Factory";
+            VeiculoFactory factory = factories.get(tipo);
 
-        if (factory == null) {
-            throw new VeiculoInvalidoException("Tipo de veículo inválido: " + createVeiculoDto.getCategoriaVeiculo());
+            if (factory == null) {
+                throw new VeiculoInvalidoException("Tipo de veículo inválido: " + createVeiculoDto.getCategoriaVeiculo());
+            }
+
+            Veiculo veiculo = factory.criarVeiculo(createVeiculoDto);
+
+            veiculo = veiculoRepository.save(veiculo);
+
+            return convertToDto(veiculo);
+        } catch (DataIntegrityViolationException e){
+            throw new PlacaDeVeiculoJaExistenteException("A placa de veículo informada já contém cadastro no sistema.");
         }
-
-        Veiculo veiculo = factory.criarVeiculo(createVeiculoDto);
-
-        veiculo = veiculoRepository.save(veiculo);
-
-        return convertToDto(veiculo);
     }
 
     @Transactional(readOnly = true)
