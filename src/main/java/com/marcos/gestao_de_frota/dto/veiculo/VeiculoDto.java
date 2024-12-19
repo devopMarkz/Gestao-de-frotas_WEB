@@ -7,6 +7,7 @@ public class VeiculoDto {
 
     private Long id;
     private Boolean disponivel;
+    private String placa;
     private String marca;
     private String modelo;
     private Integer anoFabricacao;
@@ -14,9 +15,10 @@ public class VeiculoDto {
     private Double custoPorDia;
     private String categoriaVeiculo;
 
-    public VeiculoDto(Long id, Boolean disponivel, String marca, String modelo, Integer anoFabricacao, Double capacidade, Double custoPorDia, String categoriaVeiculo) {
+    public VeiculoDto(Long id, Boolean disponivel, String placa, String marca, String modelo, Integer anoFabricacao, Double capacidade, Double custoPorDia, String categoriaVeiculo) {
         this.id = id;
         this.disponivel = disponivel;
+        this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
         this.anoFabricacao = anoFabricacao;
@@ -31,6 +33,10 @@ public class VeiculoDto {
 
     public Boolean getDisponivel() {
         return disponivel;
+    }
+
+    public String getPlaca() {
+        return placa;
     }
 
     public String getMarca() {

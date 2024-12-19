@@ -14,6 +14,7 @@ public class CaminhaoFactory implements VeiculoFactory{
     public Veiculo criarVeiculo(CreateVeiculoDto createVeiculoDto) {
         Caminhao caminhao = new Caminhao();
         caminhao.setDisponivel(createVeiculoDto.getDisponivel());
+        caminhao.setPlaca(caminhao.getPlaca());
         caminhao.setMarca(createVeiculoDto.getMarca());
         caminhao.setModelo(createVeiculoDto.getModelo());
         caminhao.setAnoFabricacao(createVeiculoDto.getAnoFabricacao());

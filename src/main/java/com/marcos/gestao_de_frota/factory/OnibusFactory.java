@@ -12,6 +12,7 @@ public class OnibusFactory implements VeiculoFactory{
     public Veiculo criarVeiculo(CreateVeiculoDto createVeiculoDto) {
         Onibus onibus = new Onibus();
         onibus.setDisponivel(createVeiculoDto.getDisponivel());
+        onibus.setPlaca(createVeiculoDto.getPlaca());
         onibus.setMarca(createVeiculoDto.getMarca());
         onibus.setModelo(createVeiculoDto.getModelo());
         onibus.setAnoFabricacao(createVeiculoDto.getAnoFabricacao());

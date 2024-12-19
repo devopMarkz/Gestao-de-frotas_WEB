@@ -6,8 +6,8 @@ public class CaminhaoDto extends VeiculoDto{
 
     private Integer numeroDeEixos;
 
-    public CaminhaoDto(Long id, Boolean disponivel, String marca, String modelo, Integer anoFabricacao, Double capacidade, Double custoPorDia, String categoriaVeiculo, Integer numeroDeEixos) {
-        super(id, disponivel, marca, modelo, anoFabricacao, capacidade, custoPorDia, categoriaVeiculo);
+    public CaminhaoDto(Long id, Boolean disponivel, String placa, String marca, String modelo, Integer anoFabricacao, Double capacidade, Double custoPorDia, String categoriaVeiculo, Integer numeroDeEixos) {
+        super(id, disponivel, placa, marca, modelo, anoFabricacao, capacidade, custoPorDia, categoriaVeiculo);
         this.numeroDeEixos = numeroDeEixos;
     }
 

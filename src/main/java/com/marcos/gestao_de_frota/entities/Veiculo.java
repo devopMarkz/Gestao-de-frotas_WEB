@@ -18,6 +18,10 @@ public abstract class Veiculo {
     private Long id;
 
     private Boolean disponivel;
+
+    @Column(unique = true)
+    private String placa;
+
     private String marca;
     private String modelo;
     private Integer anoFabricacao;
@@ -33,9 +37,10 @@ public abstract class Veiculo {
     public Veiculo() {
     }
 
-    public Veiculo(Long id, Boolean disponivel, String marca, String modelo, Integer anoFabricacao, Double capacidade, Double custoPorDia, CategoriaVeiculo categoriaVeiculo) {
+    public Veiculo(Long id, Boolean disponivel, String placa, String marca, String modelo, Integer anoFabricacao, Double capacidade, Double custoPorDia, CategoriaVeiculo categoriaVeiculo) {
         this.id = id;
         this.disponivel = disponivel;
+        this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
         this.anoFabricacao = anoFabricacao;
@@ -58,6 +63,18 @@ public abstract class Veiculo {
 
     public void setDisponivel(Boolean disponivel) {
         this.disponivel = disponivel;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public void setViagens(List<Viagem> viagens) {
+        this.viagens = viagens;
     }
 
     public String getMarca() {

@@ -17,12 +17,12 @@ public class ConvertEntityToDto {
 
     public static CaminhaoDto convertToCaminhaoDto(Caminhao caminhao){
         if(caminhao == null) return null;
-        return new CaminhaoDto(caminhao.getId(), caminhao.getDisponivel(), caminhao.getMarca(), caminhao.getModelo(), caminhao.getAnoFabricacao(), caminhao.getCapacidade(), caminhao.getCustoPorDia(), caminhao.getCategoriaVeiculo().name(), caminhao.getNumeroDeEixos());
+        return new CaminhaoDto(caminhao.getId(), caminhao.getDisponivel(), caminhao.getPlaca(), caminhao.getMarca(), caminhao.getModelo(), caminhao.getAnoFabricacao(), caminhao.getCapacidade(), caminhao.getCustoPorDia(), caminhao.getCategoriaVeiculo().name(), caminhao.getNumeroDeEixos());
     }
 
     public static OnibusDto convertToOnibusDto(Onibus onibus){
         if(onibus == null) return null;
-        return new OnibusDto(onibus.getId(), onibus.getDisponivel(), onibus.getMarca(), onibus.getModelo(), onibus.getAnoFabricacao(), onibus.getCapacidade(), onibus.getCustoPorDia(), onibus.getCategoriaVeiculo().name(), onibus.getNumeroDeAssentos());
+        return new OnibusDto(onibus.getId(), onibus.getDisponivel(), onibus.getPlaca(), onibus.getMarca(), onibus.getModelo(), onibus.getAnoFabricacao(), onibus.getCapacidade(), onibus.getCustoPorDia(), onibus.getCategoriaVeiculo().name(), onibus.getNumeroDeAssentos());
     }
 
 }

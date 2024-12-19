@@ -15,8 +15,8 @@ public class Onibus extends Veiculo{
     public Onibus() {
     }
 
-    public Onibus(Long id, Boolean disponivel, String marca, String modelo, Integer anoFabricacao, Double capacidade, Double custoPorDia, CategoriaVeiculo categoriaVeiculo, Integer numeroDeAssentos) {
-        super(id, disponivel, marca, modelo, anoFabricacao, capacidade, custoPorDia, categoriaVeiculo);
+    public Onibus(Long id, Boolean disponivel, String placa, String marca, String modelo, Integer anoFabricacao, Double capacidade, Double custoPorDia, CategoriaVeiculo categoriaVeiculo, Integer numeroDeAssentos) {
+        super(id, disponivel, placa, marca, modelo, anoFabricacao, capacidade, custoPorDia, categoriaVeiculo);
         this.numeroDeAssentos = numeroDeAssentos;
     }
 

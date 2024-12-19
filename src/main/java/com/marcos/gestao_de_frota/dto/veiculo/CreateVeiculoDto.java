@@ -13,6 +13,9 @@ public class CreateVeiculoDto {
 
     private Boolean disponivel = true;
 
+    @NotBlank(message = "A placa do veículo deve ser informada.")
+    private String placa;
+
     @NotBlank(message = "Campo não pode estar nulo ou vazio.")
     private String marca;
 
@@ -30,17 +33,22 @@ public class CreateVeiculoDto {
 
     private Map<String, Object> atributosEspecificos = new HashMap<>();
 
-    public CreateVeiculoDto(String marca, String modelo, Integer anoFabricacao, Double capacidade, Double custoPorDia, String categoriaVeiculo) {
+    public CreateVeiculoDto(String categoriaVeiculo, String placa, String marca, String modelo, Integer anoFabricacao, Double capacidade, Double custoPorDia) {
+        this.categoriaVeiculo = categoriaVeiculo;
+        this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
         this.anoFabricacao = anoFabricacao;
         this.capacidade = capacidade;
         this.custoPorDia = custoPorDia;
-        this.categoriaVeiculo = categoriaVeiculo;
     }
 
     public Boolean getDisponivel() {
         return disponivel;
+    }
+
+    public String getPlaca() {
+        return placa;
     }
 
     public String getMarca() {
