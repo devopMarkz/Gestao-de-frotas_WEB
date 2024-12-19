@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Optional;
+
 public interface VeiculoRepository extends JpaRepository<Veiculo, Long> {
 
     @Query("SELECT obj FROM Veiculo obj " +
@@ -18,5 +20,7 @@ public interface VeiculoRepository extends JpaRepository<Veiculo, Long> {
                             Pageable pageable);
 
     Page<Veiculo> findByDisponivel(@Param("disponivel") Boolean disponivel, Pageable pageable);
+
+    Optional<Veiculo> findByPlaca(@Param("placa") String placa);
 
 }

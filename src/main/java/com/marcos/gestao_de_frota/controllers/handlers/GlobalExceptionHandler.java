@@ -5,6 +5,7 @@ import com.marcos.gestao_de_frota.dto.ErrorMessageDto;
 import com.marcos.gestao_de_frota.dto.ErrorMessageFieldsDto;
 import com.marcos.gestao_de_frota.services.exceptions.MotoristaInexistenteException;
 import com.marcos.gestao_de_frota.services.exceptions.MotoristaJaExistenteException;
+import com.marcos.gestao_de_frota.services.exceptions.VeiculoInexistenteException;
 import com.marcos.gestao_de_frota.services.exceptions.VeiculoInvalidoException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -37,6 +38,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(VeiculoInvalidoException.class)
     public ResponseEntity<ErrorMessageDto> veiculoInvalido(VeiculoInvalidoException e, HttpServletRequest request){
         HttpStatus status = HttpStatus.BAD_REQUEST;
+        ErrorMessageDto errorMessageDto = new ErrorMessageDto(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status.value()).body(errorMessageDto);
+    }
+
+    @ExceptionHandler(VeiculoInexistenteException.class)
+    public ResponseEntity<ErrorMessageDto> veiculoInexistente(VeiculoInexistenteException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.NOT_FOUND;
         ErrorMessageDto errorMessageDto = new ErrorMessageDto(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status.value()).body(errorMessageDto);
     }

@@ -7,6 +7,7 @@ import com.marcos.gestao_de_frota.entities.Onibus;
 import com.marcos.gestao_de_frota.entities.Veiculo;
 import com.marcos.gestao_de_frota.factory.VeiculoFactory;
 import com.marcos.gestao_de_frota.repositories.VeiculoRepository;
+import com.marcos.gestao_de_frota.services.exceptions.VeiculoInexistenteException;
 import com.marcos.gestao_de_frota.services.exceptions.VeiculoInvalidoException;
 import com.marcos.gestao_de_frota.utils.ConvertEntityToDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,13 @@ public class VeiculoService {
         categoriaVeiculo = categoriaVeiculo.toUpperCase();
         Page<Veiculo> veiculos = (categoriaVeiculo.isEmpty()) ? veiculoRepository.findByDisponivel(disponibilidade, pageable) : veiculoRepository.searchAll(disponibilidade, categoriaVeiculo, pageable);
         return veiculos.map(this::convertToDto);
+    }
+
+    @Transactional(readOnly = true)
+    public VeiculoDto getByPlaca(String placa){
+        Veiculo veiculo = veiculoRepository.findByPlaca(placa)
+                .orElseThrow(() -> new VeiculoInexistenteException("O veículo com placa " + placa + " não contém cadastro no sistema."));
+        return convertToDto(veiculo);
     }
 
     private VeiculoDto convertToDto(Veiculo veiculo) {
