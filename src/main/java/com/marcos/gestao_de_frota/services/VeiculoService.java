@@ -46,6 +46,7 @@ public class VeiculoService {
         return convertToDto(veiculo);
     }
 
+    @Transactional(readOnly = true)
     public Page<VeiculoDto> getAll(String disponivel, String categoriaVeiculo, Pageable pageable) {
         Boolean disponibilidade = Boolean.parseBoolean(disponivel);
         categoriaVeiculo = categoriaVeiculo.toUpperCase();
