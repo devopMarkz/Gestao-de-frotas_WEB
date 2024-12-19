@@ -1,14 +1,17 @@
 package com.marcos.gestao_de_frota.services;
 
 import com.marcos.gestao_de_frota.dto.veiculo.CreateVeiculoDto;
+import com.marcos.gestao_de_frota.dto.veiculo.UpdateVeiculoDto;
 import com.marcos.gestao_de_frota.dto.veiculo.VeiculoDto;
 import com.marcos.gestao_de_frota.entities.Caminhao;
 import com.marcos.gestao_de_frota.entities.Onibus;
 import com.marcos.gestao_de_frota.entities.Veiculo;
+import com.marcos.gestao_de_frota.entities.enums.CategoriaCNH;
 import com.marcos.gestao_de_frota.factory.VeiculoFactory;
 import com.marcos.gestao_de_frota.repositories.VeiculoRepository;
 import com.marcos.gestao_de_frota.services.exceptions.VeiculoInexistenteException;
 import com.marcos.gestao_de_frota.services.exceptions.VeiculoInvalidoException;
+import com.marcos.gestao_de_frota.utils.ConvertDtoToEntity;
 import com.marcos.gestao_de_frota.utils.ConvertEntityToDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -62,7 +65,26 @@ public class VeiculoService {
         return convertToDto(veiculo);
     }
 
+    @Transactional
+    public VeiculoDto updateVeiculo(UpdateVeiculoDto updateVeiculoDto){
+        Veiculo veiculo = veiculoRepository.findByPlaca(updateVeiculoDto.getPlaca())
+                .orElseThrow(() -> new VeiculoInexistenteException("O veículo com placa " + updateVeiculoDto.getPlaca() + " não contém cadastro no sistema."));
 
+        if(!veiculo.getCategoriaVeiculo().name().equalsIgnoreCase(updateVeiculoDto.getCategoriaVeiculo())) {
+            throw new VeiculoInvalidoException("Não é possível alterar a categoria de um veículo.");
+        }
+
+        Veiculo veiculoAtualizado = attVeiculo(veiculo, updateVeiculoDto);
+        return convertToDto(veiculoAtualizado);
+    }
+
+    private Veiculo attVeiculo(Veiculo veiculo, UpdateVeiculoDto updateVeiculoDto){
+        return switch (veiculo.getCategoriaVeiculo().name()) {
+            case "CAMINHAO" -> ConvertDtoToEntity.convertToCaminhao(veiculo, updateVeiculoDto);
+            case "ONIBUS" -> ConvertDtoToEntity.convertToOnibus(veiculo, updateVeiculoDto);
+            default -> throw new VeiculoInvalidoException("Tipo de veículo inválido.");
+        };
+    }
 
     private VeiculoDto convertToDto(Veiculo veiculo) {
         return switch (veiculo.getCategoriaVeiculo().name()) {

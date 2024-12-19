@@ -1,6 +1,7 @@
 package com.marcos.gestao_de_frota.controllers;
 
 import com.marcos.gestao_de_frota.dto.veiculo.CreateVeiculoDto;
+import com.marcos.gestao_de_frota.dto.veiculo.UpdateVeiculoDto;
 import com.marcos.gestao_de_frota.dto.veiculo.VeiculoDto;
 import com.marcos.gestao_de_frota.services.VeiculoService;
 import jakarta.validation.Valid;
@@ -42,5 +43,10 @@ public class VeiculoController {
     @GetMapping("/{placa}")
     public ResponseEntity<VeiculoDto> findByPlaca(@PathVariable String placa){
         return ResponseEntity.ok(veiculoService.getByPlaca(placa));
+    }
+
+    @PutMapping
+    public ResponseEntity<VeiculoDto> updateVeiculo(@Valid @RequestBody UpdateVeiculoDto updateVeiculoDto){
+        return ResponseEntity.ok(veiculoService.updateVeiculo(updateVeiculoDto));
     }
 }
