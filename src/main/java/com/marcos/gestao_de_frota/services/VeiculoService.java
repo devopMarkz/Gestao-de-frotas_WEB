@@ -62,6 +62,8 @@ public class VeiculoService {
         return convertToDto(veiculo);
     }
 
+
+
     private VeiculoDto convertToDto(Veiculo veiculo) {
         return switch (veiculo.getCategoriaVeiculo().name()) {
             case "CAMINHAO" -> ConvertEntityToDto.convertToCaminhaoDto((Caminhao) veiculo);
