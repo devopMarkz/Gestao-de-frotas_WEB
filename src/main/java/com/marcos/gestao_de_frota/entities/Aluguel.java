@@ -1,13 +1,13 @@
 package com.marcos.gestao_de_frota.entities;
 
-import com.marcos.gestao_de_frota.entities.enums.StatusViagem;
+import com.marcos.gestao_de_frota.entities.enums.StatusAluguel;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tb_viagem")
-public class Viagem {
+@Table(name = "tb_aluguel")
+public class Aluguel {
 
     @EmbeddedId
     private VeiculoMotoristaPK id = new VeiculoMotoristaPK();
@@ -32,21 +32,22 @@ public class Viagem {
     private Double kmPercorrido;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status_viagem")
-    private StatusViagem statusViagem;
+    @Column(name = "status_aluguel")
+    private StatusAluguel statusAluguel;
 
-    public Viagem() {
+    @Column(name = "valor_aluguel")
+    private Double valorAluguel;
+
+    public Aluguel() {
     }
 
-    public Viagem(Motorista motorista, Veiculo veiculo, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim, Double kmPercorrido, StatusViagem statusViagem) {
+    public Aluguel(Motorista motorista, Veiculo veiculo, LocalDateTime dataHoraInicio, StatusAluguel statusAluguel) {
         this.id.setMotoristaId(motorista.getId());
         this.id.setVeiculoId(veiculo.getId());
         this.motorista = motorista;
         this.veiculo = veiculo;
         this.dataHoraInicio = dataHoraInicio;
-        this.dataHoraFim = dataHoraFim;
-        this.kmPercorrido = kmPercorrido;
-        this.statusViagem = statusViagem;
+        this.statusAluguel = statusAluguel;
     }
 
     public VeiculoMotoristaPK getId() {
@@ -97,11 +98,43 @@ public class Viagem {
         this.kmPercorrido = kmPercorrido;
     }
 
-    public StatusViagem getStatusViagem() {
-        return statusViagem;
+    public StatusAluguel getStatusAluguel() {
+        return statusAluguel;
     }
 
-    public void setStatusViagem(StatusViagem statusViagem) {
-        this.statusViagem = statusViagem;
+    public void setStatusAluguel(StatusAluguel statusAluguel) {
+        this.statusAluguel = statusAluguel;
+    }
+
+    public Double getValorAluguel() {
+        return valorAluguel;
+    }
+
+    public void setValorAluguel(Double valorAluguel) {
+        this.valorAluguel = valorAluguel;
+    }
+
+    public void calcularValorAluguel() {
+        if (this.dataHoraFim != null) {
+            long diasAluguel = java.time.temporal.ChronoUnit.DAYS.between(dataHoraInicio, dataHoraFim);
+            double custoBase = veiculo.getCustoPorDia() * diasAluguel;
+
+            double custoKm = this.kmPercorrido != null ? this.kmPercorrido * 0.5 : 0.0; // Exemplo de custo por km percorrido
+
+            this.valorAluguel = custoBase + custoKm;
+        }
+    }
+
+    public void iniciarAluguel() {
+        this.statusAluguel = StatusAluguel.EM_ANDAMENTO;
+    }
+
+    public void finalizarAluguel() {
+        this.statusAluguel = StatusAluguel.FINALIZADO;
+        calcularValorAluguel();
+    }
+
+    public void cancelarAluguel() {
+        this.statusAluguel = StatusAluguel.CANCELADO;
     }
 }

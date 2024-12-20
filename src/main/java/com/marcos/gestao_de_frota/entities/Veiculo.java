@@ -3,10 +3,8 @@ package com.marcos.gestao_de_frota.entities;
 import com.marcos.gestao_de_frota.entities.enums.CategoriaVeiculo;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "tb_veiculo")
@@ -32,7 +30,7 @@ public abstract class Veiculo {
     private CategoriaVeiculo categoriaVeiculo;
 
     @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY)
-    private List<Viagem> viagens;
+    private List<Aluguel> alugueis;
 
     public Veiculo() {
     }
@@ -71,10 +69,6 @@ public abstract class Veiculo {
 
     public void setPlaca(String placa) {
         this.placa = placa;
-    }
-
-    public void setViagens(List<Viagem> viagens) {
-        this.viagens = viagens;
     }
 
     public String getMarca() {
@@ -125,8 +119,12 @@ public abstract class Veiculo {
         this.categoriaVeiculo = categoriaVeiculo;
     }
 
-    public List<Viagem> getViagens() {
-        return viagens;
+    public List<Aluguel> getAlugueis() {
+        return alugueis;
+    }
+
+    public void setAlugueis(List<Aluguel> alugueis) {
+        this.alugueis = alugueis;
     }
 
     @Override
@@ -139,6 +137,6 @@ public abstract class Veiculo {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hash(id);
     }
 }
