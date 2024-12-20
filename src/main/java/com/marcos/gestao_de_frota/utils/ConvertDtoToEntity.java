@@ -2,15 +2,22 @@ package com.marcos.gestao_de_frota.utils;
 
 import com.marcos.gestao_de_frota.dto.motorista.CreateMotoristaDto;
 import com.marcos.gestao_de_frota.dto.motorista.MotoristaDto;
+import com.marcos.gestao_de_frota.dto.usuario.CreateUsuarioDto;
 import com.marcos.gestao_de_frota.dto.veiculo.UpdateVeiculoDto;
-import com.marcos.gestao_de_frota.entities.Caminhao;
-import com.marcos.gestao_de_frota.entities.Motorista;
-import com.marcos.gestao_de_frota.entities.Onibus;
-import com.marcos.gestao_de_frota.entities.Veiculo;
+import com.marcos.gestao_de_frota.entities.*;
 import com.marcos.gestao_de_frota.entities.enums.CategoriaCNH;
 import com.marcos.gestao_de_frota.entities.enums.CategoriaVeiculo;
+import com.marcos.gestao_de_frota.entities.enums.TipoDeUsuario;
 
 public class ConvertDtoToEntity {
+
+    public static Usuario convertToUsario(CreateUsuarioDto dto){
+        Usuario usuario = new Usuario();
+        usuario.setEmail(dto.getEmail());
+        usuario.setPassword(dto.getPassword());
+        usuario.setTipoDeUsuario(TipoDeUsuario.valueOf(dto.getTipoDeUsuario()));
+        return usuario;
+    }
 
     public static Motorista convertToEntity(CreateMotoristaDto dto){
         if(dto == null) return null;

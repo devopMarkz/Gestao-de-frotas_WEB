@@ -1,8 +1,8 @@
 package com.marcos.gestao_de_frota.controllers.handlers;
 
-import com.marcos.gestao_de_frota.dto.ErrorFieldsDto;
-import com.marcos.gestao_de_frota.dto.ErrorMessageDto;
-import com.marcos.gestao_de_frota.dto.ErrorMessageFieldsDto;
+import com.marcos.gestao_de_frota.dto.error.ErrorFieldsDto;
+import com.marcos.gestao_de_frota.dto.error.ErrorMessageDto;
+import com.marcos.gestao_de_frota.dto.error.ErrorMessageFieldsDto;
 import com.marcos.gestao_de_frota.services.exceptions.*;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -49,6 +49,20 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(PlacaDeVeiculoJaExistenteException.class)
     public ResponseEntity<ErrorMessageDto> placaDeVeiculoJaExistente(PlacaDeVeiculoJaExistenteException e, HttpServletRequest request){
         HttpStatus status = HttpStatus.NOT_FOUND;
+        ErrorMessageDto errorMessageDto = new ErrorMessageDto(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status.value()).body(errorMessageDto);
+    }
+
+    @ExceptionHandler(UsuarioInexistenteException.class)
+    public ResponseEntity<ErrorMessageDto> usuarioInexistente(UsuarioInexistenteException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        ErrorMessageDto errorMessageDto = new ErrorMessageDto(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status.value()).body(errorMessageDto);
+    }
+
+    @ExceptionHandler(EmailJaExistenteException.class)
+    public ResponseEntity<ErrorMessageDto> emailJaExistente(EmailJaExistenteException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
         ErrorMessageDto errorMessageDto = new ErrorMessageDto(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status.value()).body(errorMessageDto);
     }

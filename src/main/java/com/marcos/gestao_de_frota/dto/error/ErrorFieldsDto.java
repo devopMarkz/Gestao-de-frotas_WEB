@@ -1,4 +1,4 @@
-package com.marcos.gestao_de_frota.dto;
+package com.marcos.gestao_de_frota.dto.error;
 
 public class ErrorFieldsDto {
 

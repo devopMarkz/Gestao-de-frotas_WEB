@@ -1,14 +1,21 @@
 package com.marcos.gestao_de_frota.utils;
 
 import com.marcos.gestao_de_frota.dto.motorista.MotoristaDto;
+import com.marcos.gestao_de_frota.dto.usuario.UsuarioDto;
 import com.marcos.gestao_de_frota.dto.veiculo.CaminhaoDto;
 import com.marcos.gestao_de_frota.dto.veiculo.OnibusDto;
 import com.marcos.gestao_de_frota.dto.veiculo.VeiculoDto;
 import com.marcos.gestao_de_frota.entities.Caminhao;
 import com.marcos.gestao_de_frota.entities.Motorista;
 import com.marcos.gestao_de_frota.entities.Onibus;
+import com.marcos.gestao_de_frota.entities.Usuario;
 
 public class ConvertEntityToDto {
+
+    public static UsuarioDto convertToUsuarioDto(Usuario usuario){
+        if(usuario == null) return null;
+        return new UsuarioDto(usuario.getEmail(), usuario.getPassword(), usuario.getTipoDeUsuario().name(), convertToMotoristaDto(usuario.getMotorista()));
+    }
 
     public static MotoristaDto convertToMotoristaDto(Motorista motorista){
         if(motorista == null) return null;
