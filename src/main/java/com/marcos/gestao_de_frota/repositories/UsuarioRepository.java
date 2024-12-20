@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
-    @Query("SELECT obj FROM Usuario obj JOIN FETCH obj.motorista WHERE obj.email = :email AND obj.password = :password")
+    //@Query("SELECT obj FROM Usuario obj JOIN FETCH obj.motorista WHERE obj.email = :email AND obj.password = :password")
     Optional<Usuario> findByEmailAndPassword(String email, String password);
 
     Optional<Usuario> findByEmail(String email);

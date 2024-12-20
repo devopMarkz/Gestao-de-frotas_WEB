@@ -22,7 +22,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping
+    @PostMapping("/cadastro")
     public ResponseEntity<UsuarioDto> createUsuario(@Valid @RequestBody CreateUsuarioDto createUsuarioDto){
         UsuarioDto usuarioDto = usuarioService.insert(createUsuarioDto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -47,7 +47,5 @@ public class UsuarioController {
         UsuarioDto usuarioDto = usuarioService.login(loginRequest);
         return ResponseEntity.ok(usuarioDto);
     }
-
-
 
 }
