@@ -8,23 +8,17 @@ import jakarta.persistence.*;
 public class UsuarioDto {
 
     private String email;
-    private String password;
     private String tipoDeUsuario;
     private MotoristaDto cadastroDeMotorista;
 
-    public UsuarioDto(String email, String password, String tipoDeUsuario, MotoristaDto cadastroDeMotorista) {
+    public UsuarioDto(String email, String tipoDeUsuario, MotoristaDto cadastroDeMotorista) {
         this.email = email;
-        this.password = password;
         this.tipoDeUsuario = tipoDeUsuario;
         this.cadastroDeMotorista = cadastroDeMotorista;
     }
 
     public String getEmail() {
         return email;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public String getTipoDeUsuario() {

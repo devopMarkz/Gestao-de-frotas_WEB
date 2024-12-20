@@ -2,6 +2,7 @@ package com.marcos.gestao_de_frota.services;
 
 import com.marcos.gestao_de_frota.dto.motorista.CreateMotoristaDto;
 import com.marcos.gestao_de_frota.dto.usuario.CreateUsuarioDto;
+import com.marcos.gestao_de_frota.dto.usuario.LoginRequestDto;
 import com.marcos.gestao_de_frota.dto.usuario.UsuarioDto;
 import com.marcos.gestao_de_frota.entities.Motorista;
 import com.marcos.gestao_de_frota.entities.Usuario;
@@ -47,6 +48,16 @@ public class UsuarioService {
         novoUsuario.setMotorista(motorista);
 
         Usuario usuario = usuarioRepository.save(novoUsuario);
+
+        return ConvertEntityToDto.convertToUsuarioDto(usuario);
+    }
+
+    @Transactional(readOnly = true)
+    public UsuarioDto login(LoginRequestDto loginRequest) {
+        Usuario usuario = usuarioRepository.findByEmailAndPassword(
+                loginRequest.getEmail(),
+                loginRequest.getPassword()
+        ).orElseThrow(() -> new UsuarioInexistenteException("Login ou senha inválidos."));
 
         return ConvertEntityToDto.convertToUsuarioDto(usuario);
     }

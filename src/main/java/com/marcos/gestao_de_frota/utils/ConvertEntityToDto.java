@@ -14,7 +14,7 @@ public class ConvertEntityToDto {
 
     public static UsuarioDto convertToUsuarioDto(Usuario usuario){
         if(usuario == null) return null;
-        return new UsuarioDto(usuario.getEmail(), usuario.getPassword(), usuario.getTipoDeUsuario().name(), convertToMotoristaDto(usuario.getMotorista()));
+        return new UsuarioDto(usuario.getEmail(), usuario.getTipoDeUsuario().name(), convertToMotoristaDto(usuario.getMotorista()));
     }
 
     public static MotoristaDto convertToMotoristaDto(Motorista motorista){

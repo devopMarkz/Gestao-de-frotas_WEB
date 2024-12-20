@@ -3,6 +3,7 @@ package com.marcos.gestao_de_frota.controllers;
 import com.marcos.gestao_de_frota.dto.motorista.CreateMotoristaDto;
 import com.marcos.gestao_de_frota.dto.usuario.CreateMotoristaForUsuarioDto;
 import com.marcos.gestao_de_frota.dto.usuario.CreateUsuarioDto;
+import com.marcos.gestao_de_frota.dto.usuario.LoginRequestDto;
 import com.marcos.gestao_de_frota.dto.usuario.UsuarioDto;
 import com.marcos.gestao_de_frota.services.MotoristaService;
 import com.marcos.gestao_de_frota.services.UsuarioService;
@@ -39,6 +40,12 @@ public class UsuarioController {
                 .buildAndExpand(usuarioDto.getEmail())
                 .toUri();
         return ResponseEntity.created(location).body(usuarioDto);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<UsuarioDto> login(@RequestBody LoginRequestDto loginRequest) {
+        UsuarioDto usuarioDto = usuarioService.login(loginRequest);
+        return ResponseEntity.ok(usuarioDto);
     }
 
 }
