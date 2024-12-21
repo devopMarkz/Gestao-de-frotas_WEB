@@ -39,7 +39,7 @@ public class UsuarioService {
 
         Motorista motorista = ConvertDtoToEntity.convertToEntity(createMotoristaDto);
 
-        if(motoristaRepository.findByCnh(motorista.getCnh()) != null){
+        if(motoristaRepository.findByCnh(motorista.getCnh()).isPresent()){
             throw new MotoristaJaExistenteException("Já existe um motorista cadastrado com essa CNH.");
         }
 

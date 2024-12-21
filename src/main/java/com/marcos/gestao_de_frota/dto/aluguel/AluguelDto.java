@@ -12,16 +12,14 @@ public class AluguelDto {
     private VeiculoDto veiculo;
     private LocalDateTime dataHoraInicio;
     private LocalDateTime dataHoraFim;
-    private Double kmPercorrido;
     private StatusAluguel statusAluguel;
     private Double valorAluguel;
 
-    public AluguelDto(MotoristaDto motorista, VeiculoDto veiculo, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim, Double kmPercorrido, StatusAluguel statusAluguel, Double valorAluguel) {
+    public AluguelDto(MotoristaDto motorista, VeiculoDto veiculo, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim, StatusAluguel statusAluguel, Double valorAluguel) {
         this.motorista = motorista;
         this.veiculo = veiculo;
         this.dataHoraInicio = dataHoraInicio;
         this.dataHoraFim = dataHoraFim;
-        this.kmPercorrido = kmPercorrido;
         this.statusAluguel = statusAluguel;
         this.valorAluguel = valorAluguel;
     }
@@ -40,10 +38,6 @@ public class AluguelDto {
 
     public LocalDateTime getDataHoraFim() {
         return dataHoraFim;
-    }
-
-    public Double getKmPercorrido() {
-        return kmPercorrido;
     }
 
     public StatusAluguel getStatusAluguel() {

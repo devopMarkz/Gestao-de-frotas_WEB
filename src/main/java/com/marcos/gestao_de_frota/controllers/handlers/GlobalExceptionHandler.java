@@ -67,6 +67,27 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(status.value()).body(errorMessageDto);
     }
 
+    @ExceptionHandler(VeiculoIndisponivelException.class)
+    public ResponseEntity<ErrorMessageDto> veiculoIndisponivel(VeiculoInexistenteException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        ErrorMessageDto errorMessageDto = new ErrorMessageDto(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status.value()).body(errorMessageDto);
+    }
+
+    @ExceptionHandler(MotoristaIndisponivelException.class)
+    public ResponseEntity<ErrorMessageDto> motoristaIndisponivel(MotoristaIndisponivelException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        ErrorMessageDto errorMessageDto = new ErrorMessageDto(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status.value()).body(errorMessageDto);
+    }
+
+    @ExceptionHandler(DataFimMenorQueDataInicioException.class)
+    public ResponseEntity<ErrorMessageDto> dataFimMenorQueDataInicio(DataFimMenorQueDataInicioException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        ErrorMessageDto errorMessageDto = new ErrorMessageDto(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status.value()).body(errorMessageDto);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorMessageDto> methodArgumentNotValid(MethodArgumentNotValidException e, HttpServletRequest request){
         HttpStatus status = HttpStatus.BAD_REQUEST;

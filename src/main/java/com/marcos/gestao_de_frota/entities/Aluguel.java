@@ -4,6 +4,7 @@ import com.marcos.gestao_de_frota.entities.enums.StatusAluguel;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tb_aluguel")
@@ -41,12 +42,13 @@ public class Aluguel {
     public Aluguel() {
     }
 
-    public Aluguel(Motorista motorista, Veiculo veiculo, LocalDateTime dataHoraInicio, StatusAluguel statusAluguel) {
+    public Aluguel(Motorista motorista, Veiculo veiculo, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim, StatusAluguel statusAluguel) {
         this.id.setMotoristaId(motorista.getId());
         this.id.setVeiculoId(veiculo.getId());
         this.motorista = motorista;
         this.veiculo = veiculo;
         this.dataHoraInicio = dataHoraInicio;
+        this.dataHoraFim = dataHoraFim;
         this.statusAluguel = statusAluguel;
     }
 
@@ -118,10 +120,7 @@ public class Aluguel {
         if (this.dataHoraFim != null) {
             long diasAluguel = java.time.temporal.ChronoUnit.DAYS.between(dataHoraInicio, dataHoraFim);
             double custoBase = veiculo.getCustoPorDia() * diasAluguel;
-
-            double custoKm = this.kmPercorrido != null ? this.kmPercorrido * 0.5 : 0.0; // Exemplo de custo por km percorrido
-
-            this.valorAluguel = custoBase + custoKm;
+            this.valorAluguel = custoBase;
         }
     }
 
@@ -136,5 +135,18 @@ public class Aluguel {
 
     public void cancelarAluguel() {
         this.statusAluguel = StatusAluguel.CANCELADO;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Aluguel aluguel = (Aluguel) object;
+        return Objects.equals(id, aluguel.id) && Objects.equals(motorista, aluguel.motorista) && Objects.equals(veiculo, aluguel.veiculo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, motorista, veiculo);
     }
 }

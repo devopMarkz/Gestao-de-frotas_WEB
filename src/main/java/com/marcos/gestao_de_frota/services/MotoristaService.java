@@ -17,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -83,8 +84,8 @@ public class MotoristaService {
      * @throws MotoristaJaExistenteException Lançada caso já exista um motorista com essa CNH
      */
     private void validateMotoristaCnhExists(Motorista motorista, UpdateMotoristaDto motoristaDto){
-        if(motoristaRepository.findByCnh(motoristaDto.getCnh()) != null){
-            if (motoristaRepository.findByCnh(motoristaDto.getCnh()).getId() != motorista.getId()){
+        if(motoristaRepository.findByCnh(motoristaDto.getCnh()).isPresent()){
+            if (!Objects.equals(motoristaRepository.findByCnh(motoristaDto.getCnh()).get().getId(), motorista.getId())){
                 throw new MotoristaJaExistenteException("Já existe um motorista cadastrado com a CNH " + motoristaDto.getCnh());
             }
         }

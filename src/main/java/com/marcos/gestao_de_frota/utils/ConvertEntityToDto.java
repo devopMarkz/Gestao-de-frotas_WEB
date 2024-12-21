@@ -1,16 +1,28 @@
 package com.marcos.gestao_de_frota.utils;
 
+import com.marcos.gestao_de_frota.dto.aluguel.AluguelDto;
 import com.marcos.gestao_de_frota.dto.motorista.MotoristaDto;
 import com.marcos.gestao_de_frota.dto.usuario.UsuarioDto;
 import com.marcos.gestao_de_frota.dto.veiculo.CaminhaoDto;
 import com.marcos.gestao_de_frota.dto.veiculo.OnibusDto;
 import com.marcos.gestao_de_frota.dto.veiculo.VeiculoDto;
-import com.marcos.gestao_de_frota.entities.Caminhao;
-import com.marcos.gestao_de_frota.entities.Motorista;
-import com.marcos.gestao_de_frota.entities.Onibus;
-import com.marcos.gestao_de_frota.entities.Usuario;
+import com.marcos.gestao_de_frota.entities.*;
+import com.marcos.gestao_de_frota.entities.enums.CategoriaVeiculo;
 
 public class ConvertEntityToDto {
+
+    public static AluguelDto convertToAluguelDto(Aluguel aluguel){
+        if(aluguel == null) return null;
+        VeiculoDto veiculoDto;
+        if(aluguel.getVeiculo().getCategoriaVeiculo().equals(CategoriaVeiculo.ONIBUS)){
+            veiculoDto = convertToOnibusDto((Onibus) aluguel.getVeiculo());
+        } else if(aluguel.getVeiculo().getCategoriaVeiculo().equals(CategoriaVeiculo.CAMINHAO)) {
+            veiculoDto = convertToCaminhaoDto((Caminhao) aluguel.getVeiculo());
+        } else {
+            veiculoDto = null;
+        }
+        return new AluguelDto(convertToMotoristaDto(aluguel.getMotorista()), veiculoDto, aluguel.getDataHoraInicio(), aluguel.getDataHoraFim(), aluguel.getStatusAluguel(), aluguel.getValorAluguel());
+    }
 
     public static UsuarioDto convertToUsuarioDto(Usuario usuario){
         if(usuario == null) return null;
