@@ -8,11 +8,13 @@ import com.marcos.gestao_de_frota.entities.Motorista;
 import com.marcos.gestao_de_frota.entities.Usuario;
 import com.marcos.gestao_de_frota.repositories.MotoristaRepository;
 import com.marcos.gestao_de_frota.repositories.UsuarioRepository;
+import com.marcos.gestao_de_frota.services.exceptions.EmailJaExistenteException;
 import com.marcos.gestao_de_frota.services.exceptions.MotoristaJaExistenteException;
 import com.marcos.gestao_de_frota.services.exceptions.UsuarioInexistenteException;
 import com.marcos.gestao_de_frota.utils.ConvertDtoToEntity;
 import com.marcos.gestao_de_frota.utils.ConvertEntityToDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,9 +29,13 @@ public class UsuarioService {
 
     @Transactional
     public UsuarioDto insert(CreateUsuarioDto createUsuarioDto){
-        Usuario usuario = ConvertDtoToEntity.convertToUsario(createUsuarioDto);
-        usuario = usuarioRepository.save(usuario);
-        return ConvertEntityToDto.convertToUsuarioDto(usuario);
+        try {
+            Usuario usuario = ConvertDtoToEntity.convertToUsario(createUsuarioDto);
+            usuario = usuarioRepository.save(usuario);
+            return ConvertEntityToDto.convertToUsuarioDto(usuario);
+        } catch (DataIntegrityViolationException e){
+            throw new EmailJaExistenteException("Este e-mail já possui cadastro no sistema.");
+        }
     }
 
     @Transactional

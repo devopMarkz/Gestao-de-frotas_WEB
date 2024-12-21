@@ -68,7 +68,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(VeiculoIndisponivelException.class)
-    public ResponseEntity<ErrorMessageDto> veiculoIndisponivel(VeiculoInexistenteException e, HttpServletRequest request){
+    public ResponseEntity<ErrorMessageDto> veiculoIndisponivel(VeiculoIndisponivelException e, HttpServletRequest request){
         HttpStatus status = HttpStatus.BAD_REQUEST;
         ErrorMessageDto errorMessageDto = new ErrorMessageDto(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status.value()).body(errorMessageDto);
