@@ -12,6 +12,8 @@ import com.marcos.gestao_de_frota.repositories.VeiculoRepository;
 import com.marcos.gestao_de_frota.services.exceptions.*;
 import com.marcos.gestao_de_frota.utils.ConvertEntityToDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,9 +53,17 @@ public class AluguelService {
         motoristaRepository.save(motorista);
         veiculoRepository.save(veiculo);
 
+        aluguel.finalizarAluguel();
+
         aluguel = aluguelRepository.save(aluguel);
 
         return ConvertEntityToDto.convertToAluguelDto(aluguel);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<AluguelDto> getAlugueis(LocalDateTime startDate, LocalDateTime endDate, StatusAluguel statusAluguel, Pageable pageable){
+        Page<Aluguel> alugueis = aluguelRepository.searchByFilters(startDate, endDate, statusAluguel, pageable);
+        return alugueis.map(ConvertEntityToDto::convertToAluguelDto);
     }
 
     private void validateDriverAndVehicleAvailability(Motorista motorista, Veiculo veiculo){
