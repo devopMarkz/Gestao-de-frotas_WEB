@@ -88,6 +88,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(status.value()).body(errorMessageDto);
     }
 
+    @ExceptionHandler(StatusAluguelInexistente.class)
+    public ResponseEntity<ErrorMessageDto> statusAluguelInexistente(StatusAluguelInexistente e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        ErrorMessageDto errorMessageDto = new ErrorMessageDto(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status.value()).body(errorMessageDto);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorMessageDto> methodArgumentNotValid(MethodArgumentNotValidException e, HttpServletRequest request){
         HttpStatus status = HttpStatus.BAD_REQUEST;
