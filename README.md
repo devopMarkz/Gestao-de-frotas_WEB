@@ -57,5 +57,18 @@ Antes de começar, você precisará do seguinte instalado em sua máquina:
 
 ---
 
-## ENDPOINTS
+## Endpoints - Usuário
+
+### 1. Cadastro de Usuário
+**URL:** `POST - http://localhost:8080/usuarios/cadastro`  
+**Descrição:** Cadastra usuários no sistema.
+
+**JSON de Entrada:**
+   ```json
+   {
+     "email": "seugmail@gmail.com",
+     "password": "minhaSenha123",
+     "tipoDeUsuario": "MOTORISTA"
+   }
+```
 
