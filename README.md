@@ -30,7 +30,7 @@ Antes de começar, você precisará do seguinte instalado em sua máquina:
 
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/SEU_REPOSITORIO.git
+   git clone https://github.com/devopMarkz/Gestao-de-frotas_WEB.git
 
 2. **Importe o projeto na sua IDE:**
    - Abra sua IDE.
@@ -53,7 +53,7 @@ Antes de começar, você precisará do seguinte instalado em sua máquina:
 1. Inicie o Servidor Local
    • Execute o método main da classe principal
    
-3. Acesse a aplicação no navegador para verificar se está ok (http://localhost:8080)
+2. Acesse a aplicação no navegador para verificar se está ok (http://localhost:8080)
 
 ---
 
