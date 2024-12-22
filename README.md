@@ -51,9 +51,9 @@ Antes de começar, você precisará do seguinte instalado em sua máquina:
 ## Inicialização do Sistema
 
 1. Inicie o Servidor Local
-   • Execute o método main da classe principal
+   - Execute o método main da classe principal
    
-2. Acesse a aplicação no navegador para verificar se está ok (http://localhost:8080)
+3. Acesse a aplicação no navegador para verificar se está ok (http://localhost:8080)
 
 ---
 
