@@ -72,3 +72,40 @@ Antes de começar, você precisará do seguinte instalado em sua máquina:
    }
 ```
 
+### 2. Cadastro de Motorista para Usuário
+**URL:** `POST - http://localhost:8080/usuarios/usuario/motorista`  
+**Descrição:** Cria um cadastro de motorista para o usuário.
+
+**JSON de Entrada:**
+   ```json
+   {
+     "email": "seugmail@gmail.com",
+     "cadastroDeMotorista": {
+         "nome": "João Silva",
+         "cnh": "123456781",
+         "categoriaCNH": "C",
+         "dataNascimento": "1985-05-15"
+      }
+   }
+```
+
+### 3. Login de Usuário
+**URL:** `POST - http://localhost:8080/usuarios/login`  
+**Descrição:** Efetua o login do usuário no sistema.
+
+**JSON de Entrada:**
+   ```json
+   {
+      "email": "marcosacs.2022@gmail.com",
+      "password": "minhaSenha123"
+   }
+```
+
+
+
+
+
+
+
+
+```
