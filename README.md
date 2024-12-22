@@ -2,18 +2,60 @@
 
 ## Apresentação
 
-Bem-vindo ao Sistema de Gestão de Frotas, uma aplicação completa voltada para o gerenciamento eficiente de veículos e suas respectivas operações. Este sistema foi projetado para facilitar a administração de frotas, oferecendo funcionalidades que abrangem desde o cadastro de veículos e motoristas até o aluguel e acompanhamento detalhado dos serviços prestados. 
+Bem-vindo ao Sistema de Gestão de Frotas! Este sistema foi desenvolvido para simplificar a administração de veículos, motoristas e processos de aluguel. Com uma interface funcional e recursos bem definidos, ele oferece ferramentas para cadastro, gerenciamento e envio de informações automatizadas.
 
-Com um foco em simplicidade e praticidade, o sistema automatiza processos essenciais, permitindo que os administradores e usuários tenham mais controle e organização em suas tarefas diárias. A seguir, apresentamos os principais recursos oferecidos pela aplicação.
+---
 
 ## Funcionalidades
 
-1. **Cadastro de Veículos**: Administradores podem cadastrar veículos na plataforma, inserindo informações relevantes, como modelo, marca, ano e status de disponibilidade.
+- **Cadastro de Veículos:** Administradores podem cadastrar veículos e gerenciar sua disponibilidade.
+- **Cadastro de Usuários e Motoristas:** Criação de usuários, com opção de associar motoristas aos perfis cadastrados.
+- **Aluguel de Veículos:** Reserva de veículos com validações automáticas e cálculo de custos.
+- **Envio de E-mails Automáticos:** Detalhes do aluguel são enviados por e-mail ao usuário responsável.
 
-2. **Cadastro de Usuários**: Permite a criação de perfis de usuários com diferentes níveis de acesso, garantindo maior segurança e personalização na utilização do sistema.
+---
 
-3. **Cadastro de Motoristas**: Associado a um usuário, é possível cadastrar motoristas, vinculando-os às frotas e facilitando a gestão de motoristas e veículos.
+## Pré-requisitos
 
-4. **Aluguel de Veículos**: Usuários podem realizar reservas e aluguéis de veículos disponíveis, com validações automáticas para evitar conflitos ou inconsistências.
+Antes de começar, você precisará do seguinte instalado em sua máquina:
 
-5. **Envio Automático de E-mails**: Após a confirmação de um aluguel, o sistema envia um e-mail automático com todos os detalhes da reserva, garantindo que o cliente tenha acesso a todas as informações necessárias.
+- **Java 17** ou superior
+- **Maven**
+- **IDE de sua escolha** (recomenda-se IntelliJ ou Eclipse)
+- **Conta Gmail** com autenticação em duas etapas ativada
+
+---
+
+## Instalação e Configuração
+
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/SEU_REPOSITORIO.git
+
+2. **Importe o projeto na sua IDE:**
+  • Abra sua IDE.
+  • Importe o projeto como um projeto Maven existente.
+
+3. **Configure as variáveis de ambiente:**
+  • No sistema operacional, crie as variáveis de ambiente:
+    • EMAIL_USERNAME: Seu endereço de e-mail (ex.: seuemail@gmail.com).
+    • EMAIL_PASSWORD: A senha de app gerada no Gmail (não é a senha da conta).
+   
+  • Para gerar a senha de app:
+    1. Acesse sua conta Google e ative a verificação em duas etapas.
+    2. Vá até Segurança > Senhas de app > Escolha qualquer nome para o app e clique em Criar, para que seja gerada uma senha específica para este projeto.
+    3. Copie e use essa senha como valor de EMAIL_PASSWORD.
+
+---
+
+## Inicialização do Sistema
+
+1. Inicie o Servidor Local
+   • Execute o método main da classe principal
+   
+3. Acesse a aplicação no navegador para verificar se está ok (http://localhost:8080)
+
+---
+
+## ENDPOINTS
+
