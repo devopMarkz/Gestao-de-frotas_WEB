@@ -37,9 +37,9 @@ Antes de começar, você precisará do seguinte instalado em sua máquina:
   • Importe o projeto como um projeto Maven existente.
 
 3. **Configure as variáveis de ambiente:**
-  • No sistema operacional, crie as variáveis de ambiente:
-   • EMAIL_USERNAME: Seu endereço de e-mail (ex.: seuemail@gmail.com).
-   • EMAIL_PASSWORD: A senha de app gerada no Gmail (não é a senha da conta).
+   - No sistema operacional, crie as variáveis de ambiente:
+      - **EMAIL_USERNAME**: Seu endereço de e-mail (ex.: seuemail@gmail.com).
+      - **EMAIL_PASSWORD**: A senha de app gerada no Gmail (não é a senha da conta).
    
   • Para gerar a senha de app:
     1. Acesse sua conta Google e ative a verificação em duas etapas.
