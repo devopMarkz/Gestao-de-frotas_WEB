@@ -153,3 +153,34 @@ Antes de começar, você precisará do seguinte instalado em sua máquina:
 
 **Parâmetros de Rota:**  
 - `{placa}`: Placa do veículo a ser buscado (ex.: `PTW5D24`).  
+
+
+## Endpoints - Alugueis
+
+### 1. Criação de Aluguel
+**URL:** `POST - http://localhost:8080/alugueis`  
+**Descrição:** Efetua um aluguel de veículo, vinculando-o a um motorista por meio da CNH e da placa do veículo.  
+
+**JSON de Entrada:**  
+```json
+{
+  "cnh": "123456781",
+  "placa": "PTW5D24",
+  "dataHoraInicio": "2024-12-23T10:00:00",
+  "dataHoraFim": "2025-02-21T15:00:00"
+}
+```
+
+### 2. Busca de Aluguéis por Período e Status
+**URL:** `GET - http://localhost:8080/alugueis?startDate=2024-12-21T10:00:00&endDate=2025-02-21T15:00:00&statusAluguel=FINALIZADO`  
+**Descrição:** Busca aluguéis efetuados em um determinado período e filtra pelo status do aluguel.
+
+**Parâmetros de Rota:**  
+- `{startDate}`: Data e hora de início do período desejado (formato: `yyyy-MM-ddTHH:mm:ss`).  
+- `{endDate}`: Data e hora de término do período desejado (formato: `yyyy-MM-ddTHH:mm:ss`).  
+- `{statusAluguel}`: Status do aluguel (`PENDENTE`, `EM_ANDAMENTO`, `FINALIZADO`, `CANCELADO`).  
+
+
+
+## Contribuições
+Contribuições são bem-vindas! Para propor melhorias ou corrigir problemas, abra uma issue ou envie um pull request.
