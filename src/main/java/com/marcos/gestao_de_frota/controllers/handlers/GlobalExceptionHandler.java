@@ -114,4 +114,11 @@ public class GlobalExceptionHandler {
         ErrorMessageDto errorMessageDto = new ErrorMessageDto(Instant.now(), status.value(), "Corpo da requisição inválido.", request.getRequestURI());
         return ResponseEntity.status(status.value()).body(errorMessageDto);
     }
+
+    @ExceptionHandler(EmailException.class)
+    public ResponseEntity<ErrorMessageDto> email(EmailException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        ErrorMessageDto errorMessageDto = new ErrorMessageDto(Instant.now(), status.value(), "Corpo da requisição inválido.", request.getRequestURI());
+        return ResponseEntity.status(status.value()).body(errorMessageDto);
+    }
 }
