@@ -33,18 +33,18 @@ Antes de começar, você precisará do seguinte instalado em sua máquina:
    git clone https://github.com/SEU_REPOSITORIO.git
 
 2. **Importe o projeto na sua IDE:**
-  • Abra sua IDE.
-  • Importe o projeto como um projeto Maven existente.
+   - Abra sua IDE.
+   - Importe o projeto como um projeto Maven existente.
 
 3. **Configure as variáveis de ambiente:**
    - No sistema operacional, crie as variáveis de ambiente:
       - **EMAIL_USERNAME**: Seu endereço de e-mail (ex.: seuemail@gmail.com).
       - **EMAIL_PASSWORD**: A senha de app gerada no Gmail (não é a senha da conta).
-   
-  • Para gerar a senha de app:
-    1. Acesse sua conta Google e ative a verificação em duas etapas.
-    2. Vá até Segurança > Senhas de app > Escolha qualquer nome para o app e clique em Criar, para que seja gerada uma senha específica para este projeto.
-    3. Copie e use essa senha como valor de EMAIL_PASSWORD.
+
+   - Para gerar a senha de app:
+      - Acesse sua conta Google e ative a verificação em duas etapas.
+      - Vá até Segurança > Senhas de app > Escolha qualquer nome para o app e clique em Criar, para que seja gerada uma senha específica para este projeto.
+      - Copie e use essa senha como valor de EMAIL_PASSWORD.
 
 ---
 
