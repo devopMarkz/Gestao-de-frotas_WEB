@@ -29,9 +29,6 @@ public class Aluguel {
     @Column(name = "data_hora_fim")
     private LocalDateTime dataHoraFim;
 
-    @Column(name = "km_percorrido")
-    private Double kmPercorrido;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "status_aluguel")
     private StatusAluguel statusAluguel;
@@ -90,14 +87,6 @@ public class Aluguel {
 
     public void setDataHoraFim(LocalDateTime dataHoraFim) {
         this.dataHoraFim = dataHoraFim;
-    }
-
-    public Double getKmPercorrido() {
-        return kmPercorrido;
-    }
-
-    public void setKmPercorrido(Double kmPercorrido) {
-        this.kmPercorrido = kmPercorrido;
     }
 
     public StatusAluguel getStatusAluguel() {

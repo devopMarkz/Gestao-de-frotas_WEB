@@ -37,3 +37,5 @@ mvnw
 mvnw.cmd
 .idea
 .gitattributes
+
+/src/main/resources/application-dev.properties
