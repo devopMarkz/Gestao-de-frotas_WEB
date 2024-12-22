@@ -139,4 +139,10 @@ public abstract class Veiculo {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public String toString() {
+        return "Veiculo " + id + " - " + marca + " " + modelo + "\n"
+                + "Placa: " + placa + " - Custo Por dia: R$" + String.format("%.2f", custoPorDia);
+    }
 }

@@ -4,6 +4,7 @@ import com.marcos.gestao_de_frota.entities.enums.StatusAluguel;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Entity
@@ -137,5 +138,13 @@ public class Aluguel {
     @Override
     public int hashCode() {
         return Objects.hash(id, motorista, veiculo);
+    }
+
+    @Override
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        return "Início: " + dataHoraInicio.format(formatter)
+                + " - Fim: " + dataHoraFim.format(formatter)
+                + " - Valor: R$" + String.format("%.2f", valorAluguel);
     }
 }
