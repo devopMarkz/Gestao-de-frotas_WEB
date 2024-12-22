@@ -101,11 +101,55 @@ Antes de começar, você precisará do seguinte instalado em sua máquina:
    }
 ```
 
+## Endpoints - Veículos
 
+### 1. Cadastro de Veículo
+**URL:** `POST - http://localhost:8080/veiculos`  
+**Descrição:** Cria um novo veículo no sistema que pode ser alugado.
 
-
-
-
-
-
+**JSON de Entrada para criação de Ônibus:**
+```json
+{
+    "categoriaVeiculo": "ONIBUS",
+    "placa": "PTW5D24",
+    "marca": "Mercedes-Benz",
+    "modelo": "Tourismo",
+    "anoFabricacao": 2020,
+    "capacidade": 50,
+    "custoPorDia": 600.00,
+    "atributosEspecificos": {
+        "numeroDeAssentos": 52
+    }
+}
 ```
+
+**JSON de Entrada para criação de Caminhão:**
+```json
+{
+    "categoriaVeiculo": "CAMINHAO",
+    "placa": "PTW5D24",
+    "marca": "Scania",
+    "modelo": "R450",
+    "anoFabricacao": 2022,
+    "capacidade": 18000.00,
+    "custoPorDia": 750.00,
+    "atributosEspecificos": {
+        "numeroDeEixos": 6
+    }
+}
+```
+
+### 2. Busca de Veículos por Filtros
+**URL:** `GET - http://localhost:8080/veiculos?disponivel=true&categoriaVeiculo=ONIBUS`  
+**Descrição:** Efetua uma busca de veículos disponíveis por filtros.  
+
+**Parâmetros de Query:**  
+- `disponivel`: Filtra os veículos disponíveis (`true` ou `false`).  
+- `categoriaVeiculo`: Filtra os veículos pela categoria (ex.: `ONIBUS`, `CAMINHAO`).
+
+### 3. Busca de Veículo por Placa
+**URL:** `GET - http://localhost:8080/veiculos/PTW5D24`  
+**Descrição:** Efetua a busca de um veículo por sua placa.  
+
+**Parâmetros de Rota:**  
+- `{placa}`: Placa do veículo a ser buscado (ex.: `PTW5D24`).  
