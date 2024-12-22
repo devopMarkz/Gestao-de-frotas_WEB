@@ -1,11 +1,9 @@
 package com.marcos.gestao_de_frota.controllers;
 
-import com.marcos.gestao_de_frota.dto.motorista.CreateMotoristaDto;
 import com.marcos.gestao_de_frota.dto.usuario.CreateMotoristaForUsuarioDto;
 import com.marcos.gestao_de_frota.dto.usuario.CreateUsuarioDto;
 import com.marcos.gestao_de_frota.dto.usuario.LoginRequestDto;
 import com.marcos.gestao_de_frota.dto.usuario.UsuarioDto;
-import com.marcos.gestao_de_frota.services.MotoristaService;
 import com.marcos.gestao_de_frota.services.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
