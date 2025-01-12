@@ -13,4 +13,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     Optional<Usuario> findByEmail(String email);
 
+    @Query("SELECT obj FROM Usuario obj JOIN FETCH obj.roles WHERE obj.email = :email")
+    Optional<Usuario> findByEmailWithRoles(String email);
+
 }
