@@ -2,12 +2,17 @@ package com.marcos.gestao_de_frota.entities;
 
 import com.marcos.gestao_de_frota.entities.enums.TipoDeUsuario;
 import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tb_usuario")
-public class Usuario {
+public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,6 +30,12 @@ public class Usuario {
     @OneToOne
     @JoinColumn(name = "motorista_id", referencedColumnName = "id", unique = true)
     private Motorista motorista;
+
+    @ManyToMany
+    @JoinTable(name = "tb_usuario_role",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles = new ArrayList<>();
 
     public Usuario(){
     }
@@ -53,8 +64,42 @@ public class Usuario {
         this.email = username;
     }
 
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public void setPassword(String password) {
