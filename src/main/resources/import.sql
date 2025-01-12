@@ -29,3 +29,7 @@ INSERT INTO tb_onibus (veiculo_id, numero_de_assentos) VALUES (9, 48);
 
 INSERT INTO tb_veiculo (disponivel, placa, marca, modelo, ano_fabricacao, capacidade, custo_por_dia, categoria_veiculo) VALUES (TRUE, 'RTY6789', 'Comil', 'Campione 3.65', 2019, 49000.0, 400.0, 'Onibus');
 INSERT INTO tb_onibus (veiculo_id, numero_de_assentos) VALUES (10, 52);
+
+INSERT INTO tb_usuario (email, password, tipo_de_usuario) VALUES ('marcosacs.2022@gmail.com', '$2a$10$aeZcG9uPjXR9FuWWOw.q8uJKMeFyaRtoB2nw7xJ70n8FHMruRa2bu', 'MOTORISTA');
+INSERT INTO tb_role (authority) VALUES ('ADMIN');
+INSERT INTO tb_usuario_role (usuario_id, role_id) VALUES (1,1);

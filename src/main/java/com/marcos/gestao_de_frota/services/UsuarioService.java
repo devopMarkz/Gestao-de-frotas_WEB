@@ -15,6 +15,7 @@ import com.marcos.gestao_de_frota.utils.ConvertDtoToEntity;
 import com.marcos.gestao_de_frota.utils.ConvertEntityToDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,10 +28,15 @@ public class UsuarioService {
     @Autowired
     private MotoristaRepository motoristaRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Transactional
     public UsuarioDto insert(CreateUsuarioDto createUsuarioDto){
         try {
             Usuario usuario = ConvertDtoToEntity.convertToUsario(createUsuarioDto);
+            String passwordEncode = passwordEncoder.encode(usuario.getPassword());
+            usuario.setPassword(passwordEncode);
             usuario = usuarioRepository.save(usuario);
             return ConvertEntityToDto.convertToUsuarioDto(usuario);
         } catch (DataIntegrityViolationException e){
