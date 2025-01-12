@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -45,6 +46,7 @@ public class MotoristaController {
      * @return Um resultado paginado com todos os motoristas cadastrados no sistema.
      */
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Page<MotoristaDto>> findAll(@PageableDefault(page = 0, size = 10) Pageable pageable){
         return ResponseEntity.ok(motoristaService.getAll(pageable));
     }
@@ -55,11 +57,13 @@ public class MotoristaController {
      * @return MotoristaDTO
      */
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<MotoristaDto> findById(@PathVariable Long id){
         return ResponseEntity.ok(motoristaService.getById(id));
     }
 
     @PutMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<MotoristaDto> updateMotorista(@Valid @RequestBody UpdateMotoristaDto motoristaDto){
         return ResponseEntity.ok(motoristaService.updateMotorista(motoristaDto));
     }
